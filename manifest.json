@@ -1,0 +1,7 @@
+{
+  "name": "realistic-dummy-text-ja",
+  "id": "946692694904143875",
+  "api": "1.0.0",
+  "main": "dist/code.js",
+  "ui": "dist/ui.html"
+}

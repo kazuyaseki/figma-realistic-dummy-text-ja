@@ -1,0 +1,75 @@
+<div id="list"></div>
+<style>
+  * {
+    font-family: sans-serif;
+    color: #333;
+  }
+  body {
+    padding: 0;
+    margin: 0;
+  }
+  p {
+    margin: 0;
+  }
+
+  .section-header {
+    font-size: 12px;
+    padding: 8px 12px;
+    background-color: #e5e5e5;
+    color: #333;
+  }
+
+  .option-list {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  }
+  .option {
+    background-color: #fff;
+    border: none;
+    text-align: left;
+    padding: 12px 20px;
+  }
+  .option:hover {
+    background-color: #fefe88;
+    cursor: pointer;
+  }
+</style>
+<script>
+let optionGroups = []
+
+onmessage = (event) => {
+  console.log(event)
+  optionGroups = event.data.pluginMessage
+
+  optionGroups.forEach((group) => {
+    const groupEl = document.createElement("div");
+    const titleEl = document.createElement("p")
+    titleEl.classList.add("section-header")
+    titleEl.innerHTML = group.title
+
+    const optionsEl = document.createElement("ul")
+    optionsEl.classList.add("option-list")
+    group.options.forEach((option) => {
+      const optionEl = document.createElement("button")
+      optionEl.innerHTML = option.title
+      optionEl.classList.add("option")
+      optionEl.addEventListener("click", () => {
+        parent.postMessage({ pluginMessage: { type: 'run', data: option.key } }, '*')
+      })
+      optionsEl.appendChild(optionEl)
+    })
+
+    groupEl.appendChild(titleEl)
+    groupEl.appendChild(optionsEl)
+
+    document.getElementById("list").appendChild(groupEl)
+  })
+};
+
+document.getElementById('create').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'run', data: keys[0] } }, '*')
+}
+
+</script>
