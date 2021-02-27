@@ -1,6 +1,6 @@
-import { optionGroups } from "./dummyData";
+import { dummyData, optionGroups } from "./dummyData";
 
-figma.showUI(__html__);
+figma.showUI(__html__, { height: 320 });
 
 const textNodes: TextNode[] = []
 
@@ -33,15 +33,15 @@ function traverseSelection() {
   }
 }
 
-function replaceText(newText: string) {
+function replaceText(key: string) {
   if (textNodes.length) {
     for (const textNode of textNodes) {
       figma.loadFontAsync(textNode.fontName as FontName).then(() => {
-        textNode.characters = newText
+        textNode.characters = dummyData[key]()
       })
     }
   } else {
-    figma.closePlugin("Select at least one text node before using Faker.")
+    figma.notify("テキストの要素を選択してください")
   }
 }
 

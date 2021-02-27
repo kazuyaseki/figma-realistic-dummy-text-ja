@@ -2,7 +2,7 @@
 <style>
   * {
     font-family: sans-serif;
-    color: #333;
+    color: #424347;
   }
   body {
     padding: 0;
@@ -13,10 +13,10 @@
   }
 
   .section-header {
-    font-size: 12px;
-    padding: 8px 12px;
+    font-size: 11px;
+    padding: 6px 12px;
     background-color: #e5e5e5;
-    color: #333;
+    color: #666;
   }
 
   .option-list {
@@ -25,14 +25,20 @@
     margin: 0;
     padding: 0;
   }
+
   .option {
     background-color: #fff;
     border: none;
     text-align: left;
-    padding: 12px 20px;
+    padding: 8px 12px;
   }
+
+  .option:not(:last-child) {
+    border-bottom: 1px solid #e5e5e5;
+  }
+
   .option:hover {
-    background-color: #fefe88;
+    background-color: rgba(0, 158, 254, 0.2);
     cursor: pointer;
   }
 </style>
@@ -49,7 +55,7 @@ onmessage = (event) => {
     titleEl.classList.add("section-header")
     titleEl.innerHTML = group.title
 
-    const optionsEl = document.createElement("ul")
+    const optionsEl = document.createElement("div")
     optionsEl.classList.add("option-list")
     group.options.forEach((option) => {
       const optionEl = document.createElement("button")

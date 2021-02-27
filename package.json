@@ -4,8 +4,9 @@
   "description": "Your Figma plugin",
   "main": "code.js",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "dev": "webpack --mode=development --watch"
+    "dev": "webpack --mode=development --watch",
+    "build": "webpack",
+    "prettier": "prettier --write"
   },
   "author": "",
   "license": "",
